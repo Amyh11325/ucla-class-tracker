@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 dotenv_path = join(dirname(__file__), 'creds.env')
 load_dotenv(dotenv_path)
 
-USER = os.environ.get("USERNAME")
+LOGIN = os.environ.get("LOGIN")
 PASS = os.environ.get("PASS")
 DEPT = os.environ.get("DEPT")
 CLASS = os.environ.get("CLASS")
@@ -18,13 +18,13 @@ DRIVER_LOC = os.environ.get("DRIVER_LOC")
 driver = webdriver.Chrome(DRIVER_LOC)
 
 driver.get("https://be.my.ucla.edu/ClassPlanner/ClassPlan.aspx")
-fill = driver.find_element(By.XPATH, '//*[@id="logon"]')
-fill.click()
-fill.send_keys(USER)
+fillUser = driver.find_element(By.XPATH, '//*[@id="logon"]')
+fillUser.click()
+fillUser.send_keys(LOGIN)
 
-fill = driver.find_element(By.XPATH, '//*[@id="pass"]')
-fill.click()
-fill.send_keys(PASS)
+fillPass = driver.find_element(By.XPATH, '//*[@id="pass"]')
+fillPass.click()
+fillPass.send_keys(PASS)
 
 driver.find_element(By.XPATH,'//*[@id="sso"]/form/div/table/tbody/tr/td[1]/button').click()
 
@@ -43,26 +43,26 @@ print("WE'RE IN")
 driver.get("https://be.my.ucla.edu/ClassPlanner/ClassPlan.aspx")
 
 
-fill = driver.find_element(By.XPATH, '//*[@id="searchTier0"]')
-fill.click()
-fill.send_keys(DEPT)
+fillDept = driver.find_element(By.XPATH, '//*[@id="searchTier0"]')
+fillDept.click()
+fillDept.send_keys(DEPT)
 time.sleep(2)
-fill.send_keys(Keys.RETURN)
+fillDept.send_keys(Keys.RETURN)
 
 time.sleep(2)
 
-fill = driver.find_element(By.XPATH, '//*[@id="searchTier1"]')
-fill.click()
-fill.send_keys(CLASS)
+fillClass = driver.find_element(By.XPATH, '//*[@id="searchTier1"]')
+fillClass.click()
+fillClass.send_keys(CLASS)
 time.sleep(1)
-fill.send_keys(Keys.RETURN)
+fillClass.send_keys(Keys.RETURN)
 
 time.sleep(2)
-fill = driver.find_element(By.XPATH, '//*[@id="ctl00_MainContent_cs_goButton"]').click()
+driver.find_element(By.XPATH, '//*[@id="ctl00_MainContent_cs_goButton"]').click()
 
 while(True):
     time.sleep(5)
     e = driver.find_element(By.XPATH, '//*[@id="data_course_M0_187510200"]/div[3]')
     print(e.text)
-    fill = driver.find_element(By.XPATH, '//*[@id="ctl00_MainContent_cs_goButton"]').click()
+    driver.find_element(By.XPATH, '//*[@id="ctl00_MainContent_cs_goButton"]').click()
     pass
