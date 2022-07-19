@@ -1,4 +1,3 @@
-from asyncio.windows_events import NULL
 from selenium import webdriver
 import time
 from selenium.webdriver.common.by import By
@@ -10,13 +9,13 @@ from dotenv import load_dotenv
 dotenv_path = join(dirname(__file__), 'creds.env')
 load_dotenv(dotenv_path)
 
-USER = os.environ.get("USER")
+USER = os.environ.get("USERNAME")
 PASS = os.environ.get("PASS")
 DEPT = os.environ.get("DEPT")
 CLASS = os.environ.get("CLASS")
+DRIVER_LOC = os.environ.get("DRIVER_LOC")
 
-driver = webdriver.Chrome('C:/Users/Alan/Downloads/chromedriver_win32/chromedriver.exe')
-
+driver = webdriver.Chrome(DRIVER_LOC)
 
 driver.get("https://be.my.ucla.edu/ClassPlanner/ClassPlan.aspx")
 fill = driver.find_element(By.XPATH, '//*[@id="logon"]')
